@@ -23,7 +23,8 @@
                 positionX: 'center',     // Should we center the image on the X axis?
                 positionY: 'center',     // Should we center the image on the Y axis?
                 speed: 0,                // fadeIn speed for background after image loads (e.g. "fast" or 500)
-                elPosition: 'relative'  // position of containing element when not being added to the body
+                elPosition: 'relative',  // position of containing element when not being added to the body
+                opacity: .5
             },
             el = $(this),
             container = isBody ? $('.anystretch') : el.children(".anystretch"),
@@ -83,7 +84,31 @@
                                           
                                       })
                                       .appendTo(container);
-                     
+                    
+                    // OVERLAY    				
+					if (settings.src !== undefined) 
+					{
+						if (overlayDiv === undefined) {
+						var overlayDiv = $("<div/>").css({								
+								backgroundImage: "url(" + settings.src +")"	
+								,backgroundRepeat: "repeat"
+								,opacity:	typeof(settings.opacity == 'number') ? settings.opacity : .5
+								,width:		"100%"
+								,height:	"100%"
+								,position:	"absolute"
+								,display:	"block"
+                                ,zIndex:     -999999
+							}).addClass("overlay");
+					}
+		
+					
+						if (container && container.children(".overlay").length === 0)
+						{							  
+							overlayDiv.appendTo(container);
+						}
+					}
+                    
+                    
                     // Append the container to the body, if it's not already there
                     if(el.children(".anystretch").length == 0) {
                         if(isBody) {

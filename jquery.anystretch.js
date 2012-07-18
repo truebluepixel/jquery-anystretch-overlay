@@ -1,16 +1,7 @@
 /*
- * jQuery Anystretch
- * Version 1.1
- * https://github.com/danmillar/jquery-anystretch
- *
- * Add a dynamically-resized background image to the body
- * of a page or any other block level element within it
- *
- * Copyright (c) 2012 Dan Millar (@danmillar / decode.uk.com)
- * Dual licensed under the MIT and GPL licenses.
- *
- * This is a fork of jQuery Backstretch (v1.2)
- * Copyright (c) 2011 Scott Robbin (srobbin.com)
+ * This is a fork of jQuery Anystretch with an overlay feature (similiar to vegas jquery plugin)
+ * slideshow functionality not tested! 
+ * parameter src must be set with an image url, opacity is .5 by default
 */
 
 ;(function($) {

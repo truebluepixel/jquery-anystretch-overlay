@@ -12,5 +12,5 @@ opacity for overlay (default : .5)
 
 
 
-
-* This was forked from Anystretch
+-----------------------------------------------
+This was forked from Anystretch

@@ -8,6 +8,10 @@
     
     $.fn.anystretch = function(src, options, callback) {
         var isBody = this.selector.length ? false : true; // Decide whether anystretch is being called on an element or not
+		
+		
+		
+	
 
         return this.each(function(i){
             var defaultSettings = {
@@ -22,7 +26,14 @@
             settings = container.data("settings") || defaultSettings, // If this has been called once before, use the old settings as the default
             existingSettings = container.data('settings'),
             imgRatio, bgImg, bgWidth, bgHeight, bgOffset, bgCSS;
-
+			
+			var cssBgImage = el.css('backgroundImage').replace( /url\("?(.*?)"?\)/i, '$1' );
+			
+			if (src === "" && cssBgImage !== 'none') {
+				src = cssBgImage;	
+				el.css({backgroundImage:''});
+			}
+			
             // Extend the settings with those the user has provided
             if(options && typeof options == "object") $.extend(settings, options);
             
@@ -79,8 +90,8 @@
                     // OVERLAY    				
 					if (settings.src !== undefined) 
 					{
-						if (overlayDiv === undefined) {
-						var overlayDiv = $("<div/>").css({								
+						if (patternOverlay === undefined) {
+						var patternOverlay = $("<div/>").css({								
 								backgroundImage: "url(" + settings.src +")"	
 								,backgroundRepeat: "repeat"
 								,opacity:	typeof(settings.opacity == 'number') ? settings.opacity : .5
@@ -89,15 +100,18 @@
 								,position:	"absolute"
 								,display:	"block"
                                 ,zIndex:     -999999
-							}).addClass("overlay");
+							}).addClass("patternOverlay");
 					}
 		
 					
-						if (container && container.children(".overlay").length === 0)
+						if (container && container.children(".patternOverlay").length === 0)
 						{							  
-							overlayDiv.appendTo(container);
+							patternOverlay.appendTo(container);
 						}
 					}
+					
+
+					
                     
                     
                     // Append the container to the body, if it's not already there
